@@ -1,101 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Desafio 01</title>
 </head>
+
 <body>
 	<h1>Desafio 01</h1>
 	<script>
 
 		//Fase 1
-		let numArr = [0,0,0]
+		let numArr = [0, 0, 0]
 		let msg
-		let novoNum = [0,0,0]
+		let novoNum = [0, 0, 0]
 
 		function sorteio1(arr) {
 			for (let i = 0; i < numArr.length; i++) {
-				numArr[i] = parseInt(Math.random()*3)+1
+				numArr[i] = parseInt(Math.random() * 3) + 1
 			}
 			//console.log(numArr)
 			return arr
-        }
+		}
 
 		// Fase 2
-		function sorteio2(){
-			
+		function sorteio2() {
+
 			for (let i = 0; i < numArr.length; i++) {
-				numArr[i] = parseInt(Math.random()*3)+1
+				numArr[i] = parseInt(Math.random() * 3) + 1
 				//console.log(numArr[i])
 			}
 			console.log(numArr)
 
-			if (numArr[0] == numArr[1] && numArr[0] == numArr[2]){
+			if (numArr[0] == numArr[1] && numArr[0] == numArr[2]) {
 				msg = `Porta 1: Aberta`
 			} else {
 				msg = "Tente novamente!"
 			}
-			console.log (msg)
+			console.log(msg)
 		}
 
 		//Fase 3
 		let repeticoes = 0
-        var porta = 0
-		function sorteio3(){
+		var porta = 0
+		function sorteio3() {
 
-            let sorteioAtual = []
-            let salvaSorteioAnterior = [] 
+			let sorteioAtual = []
+			let salvaSorteioAnterior = []
 
-            function novoSorteio(arr1) {
+			function novoSorteio(arr1) {
 				for (let i = 0; i < novoNum.length; i++) {
-					novoNum[i] = parseInt(Math.random()*3)+1
+					novoNum[i] = parseInt(Math.random() * 3) + 1
 				}
-				return arr1 	
-        	}
-        	
-            function sequenciaIgual(qtdPorta){
-            	console.log(sorteio1(numArr))
-            	if (numArr[0] === numArr[1] &&
-			        numArr[0] === numArr[2]) {
-			        porta++
-			        console.log(`Porta ${porta} : Aberta`)
-			        
-			    } else {
-			        console.log("Tente de novo")
-			    }
-			    return qtdPorta
-            }
+				return arr1
+			}
 
-            function sorteioAnterior(qtdPorta){
-            	salvaSorteioAnterior = numArr
+			function sequenciaIgual(qtdPorta) {
+				console.log(sorteio1(numArr))
+				if (numArr[0] === numArr[1] &&
+					numArr[0] === numArr[2]) {
+					porta++
+					console.log(`Porta ${porta} : Aberta`)
+
+				} else {
+					console.log("Tente de novo")
+				}
+				return qtdPorta
+			}
+
+			function sorteioAnterior(qtdPorta) {
+				salvaSorteioAnterior = numArr
 				sorteioAtual = novoSorteio(novoNum)
-				
-            	console.log(salvaSorteioAnterior)  
-            	console.log(sorteioAtual)
 
-            	if (numArr[0] === novoNum[0] 
-            		&& numArr[1] === novoNum[1] 
-            		&& numArr[2] === novoNum[2]){
-            		porta++
-            		console.log(`Porta ${porta} : Aberta`)
-            	}else {
-			        console.log("Tente de novo")
-			    }
-			    return qtdPorta
-            }
+				console.log(salvaSorteioAnterior)
+				console.log(sorteioAtual)
 
-            for (let i = 0; i < 10; i++) {
-            	sequenciaIgual(porta)
-		        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-		        sorteioAnterior(porta)
-		        console.log("---------------------------------------------------------") 
-		        if (porta == 3){
-		        	console.log("Você venceu!!!")
-		        	break
-		        }
-            }
-		      
+				if (numArr[0] === novoNum[0]
+					&& numArr[1] === novoNum[1]
+					&& numArr[2] === novoNum[2]) {
+					porta++
+					console.log(`Porta ${porta} : Aberta`)
+				} else {
+					console.log("Tente de novo")
+				}
+				return qtdPorta
+			}
+
+			for (let i = 0; i < 10; i++) {
+				sequenciaIgual(porta)
+				console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+				sorteioAnterior(porta)
+				console.log("---------------------------------------------------------")
+				if (porta == 3) {
+					console.log("Você venceu!!!")
+					break
+				}
+			}
+
 		}
 
 		sorteio3()

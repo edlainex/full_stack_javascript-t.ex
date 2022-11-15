@@ -42,7 +42,7 @@
 		}
 
 		//Fase 3
-		let repeticoes = 0
+		let tentativas = 0
 		var porta = 0
 		function sorteio3() {
 
@@ -65,6 +65,7 @@
 
 				} else {
 					console.log("Tente de novo")
+					tentativas++
 				}
 				return qtdPorta
 			}
@@ -83,6 +84,7 @@
 					console.log(`Porta ${porta} : Aberta`)
 				} else {
 					console.log("Tente de novo")
+					tentativas++
 				}
 				return qtdPorta
 			}
@@ -94,6 +96,7 @@
 				console.log("---------------------------------------------------------")
 				if (porta == 3) {
 					console.log("Você venceu!!!")
+					console.log(`Total de tentativas: ${tentativas}`)
 					break
 				}
 			}
